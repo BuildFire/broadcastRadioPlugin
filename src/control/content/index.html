@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html ng-app="webviewPlugin">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>content</title>
+  <!-- CSS -->
+  <link href="../../../../styles/helper.css" rel="stylesheet">
+  <link href="../../../../styles/siteIcons.css" rel="stylesheet">
+
+  <!-- JS -->
+  <script src="../../../../scripts/buildfire.js"></script>
+  <script src="../../../../scripts/angular/angular.min.js"></script>
+  <script src="app.js"></script>
+  <style>
+    .radio-block {
+      display: block !important;
+      padding-bottom: 5px;
+    }
+  </style>
+</head>
+<body ng-controller="webviewPluginCtrl" id="webviewApp" ng-cloak
+      ng-show="datastoreInitialized">
+    
+<div ng-form="frmMain">
+  <div class="item clearfix row margin-bottom-fifteen">
+    <div class="labels col-md-3 padding-right-zero pull-left">
+      <span>URL</span>
+    </div>
+    <div class="main col-md-9 pull-right clearfix">
+      <div class="col-md-9 pull-left padding-left-zero">
+        <input id="url" name="url" type="text" class="form-control"
+               ng-model="data.content.url" placeholder="https://purgatory.broadcast.radio/listen">
+      </div>
+      <div class="col-md-3 pull-right padding-zero">
+        <button class="btn btn-success stretch" ng-click="validateUrl()"
+                ng-disabled="!data.content.url">
+          Validate
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="item clearfix row"
+       ng-if="data.content.url && !isUrlValid(data.content.url)">
+    <div class="main pull-right col-md-9">
+      <p style="color: #ff7164">Seems like
+        your url is not valid ! But if you
+        want,
+        you can
+        still
+        add it
+        to your plugin.</p>
+    </div>
+  </div>
+
+  <div class="item clearfix row">
+    <div class="main pull-right col-md-9">
+      <div class="alert alert-success alert-sm text-center" ng-if="urlValid">Url
+        successfully validated
+      </div>
+      <div class="alert alert-danger alert-sm text-center" ng-if="urlInValid">
+        Invalid Url
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
